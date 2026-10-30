@@ -35,7 +35,7 @@ jobs:
         run: |
           go test -race ./...
           go vet ./...
-          ./scripts/smoke.sh
+          bash ./scripts/smoke.sh
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -52,7 +52,7 @@ jobs:
       - name: Run real Xray container integration test
         env:
           IMAGE_TAG: omid-iran-bermuda:${{ github.ref_name }}
-        run: ./scripts/docker-smoke.sh
+        run: bash ./scripts/docker-smoke.sh
 
       - name: Build Linux and Windows binaries
         shell: bash

@@ -21,9 +21,9 @@ jobs:
         with:
           node-version: '22'
       - name: Verify source
-        run: ./scripts/verify.sh
+        run: bash ./scripts/verify.sh
       - name: HTTP smoke test
-        run: ./scripts/smoke.sh
+        run: bash ./scripts/smoke.sh
 
   docker-integration:
     runs-on: ubuntu-latest
@@ -40,7 +40,7 @@ jobs:
           load: true
           tags: omid-iran-bermuda:1.0.1
       - name: Start image and verify real Xray runtime
-        run: ./scripts/docker-smoke.sh
+        run: bash ./scripts/docker-smoke.sh
 
   windows-native:
     runs-on: windows-latest
