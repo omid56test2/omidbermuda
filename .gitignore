@@ -1,0 +1,15 @@
+.env
+.env.*
+!.env.example
+data/
+data-preview/
+dist/
+xray/
+*.log
+*.zip
+*.exe
+*backup*.json
+xray-generated.json
+release-assets/
+.DS_Store
+Thumbs.db
