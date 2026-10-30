@@ -1,4 +1,4 @@
-- name: Zip extract
+name: Zip extract
   # You may pin to the exact commit or the version.
   # uses: hoatruongdev09/extract-zip-github-action@dd1eb7883f2792b2baeb525abd0471439e1c6a4e
   uses: hoatruongdev09/extract-zip-github-action@v1.2
