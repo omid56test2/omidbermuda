@@ -26,10 +26,38 @@ jobs:
 
       - name: Verify tag matches VERSION
         shell: bash
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
         run: |
-          TAG_VERSION="${GITHUB_REF_NAME#v}"
-          FILE_VERSION="$(tr -d '\r\n' < VERSION)"
-          test "$TAG_VERSION" = "$FILE_VERSION"
+          set -euo pipefail
+
+          if [[ ! -f VERSION ]]; then
+            echo "::error::VERSION file is missing from the tagged commit."
+            exit 1
+          fi
+
+          if [[ ! "$RELEASE_TAG" =~ ^v?([0-9]+\.[0-9]+\.[0-9]+([.-][0-9A-Za-z.-]+)?)$ ]]; then
+            echo "::error::Invalid release tag '$RELEASE_TAG'. Use a tag such as v1.0.1."
+            exit 1
+          fi
+          TAG_VERSION="${BASH_REMATCH[1]}"
+          FILE_VERSION="$(tr -d '[:space:]' < VERSION)"
+          FILE_VERSION="${FILE_VERSION#v}"
+
+          echo "Release tag: $RELEASE_TAG"
+          echo "Tag version: $TAG_VERSION"
+          echo "VERSION file: $FILE_VERSION"
+
+          if [[ -z "$FILE_VERSION" ]]; then
+            echo "::error::VERSION file is empty."
+            exit 1
+          fi
+
+          if [[ "$TAG_VERSION" != "$FILE_VERSION" ]]; then
+            echo "::error::Release tag and VERSION do not match. Update VERSION to '$TAG_VERSION' in the tagged commit, or create a tag matching '$FILE_VERSION'."
+            exit 1
+          fi
+          echo "Version check passed."
 
       - name: Run release checks
         run: |
