@@ -1,4 +1,4 @@
-# OMID-IRAN BERMUDA 1.0.1
+# OMID-IRAN BERMUDA 1.0.2
 
 نسخه خصوصی و خودمیزبان OMID-IRAN با هسته Go، مدیریت فرایند Xray، سه Inbound ثابت به سبک Bermuda، Gateway محدود به مسیرهای اختصاصی کاربران، اشتراک گرافیکی، آمار مصرف، محدودیت‌ها و Backup/Restore.
 
@@ -56,10 +56,10 @@ docker compose --env-file .env -f docker-compose.example.yml up -d --build
 ./scripts/smoke.sh
 ```
 
-در نسخه 1.0.1 تست‌های Go، بررسی استاتیک، ساخت باینری Linux AMD64 و Smoke Test محلی قابل اجرا هستند. پس از ساخت ایمیج Docker، تست یکپارچه Xray را نیز اجرا کن:
+در نسخه 1.0.2 تست‌های Go، بررسی استاتیک، ساخت باینری Linux AMD64 و Smoke Test محلی قابل اجرا هستند. پس از ساخت ایمیج Docker، تست یکپارچه Xray را نیز اجرا کن:
 
 ```bash
-docker build -t omid-iran-bermuda:1.0.1 .
+docker build -t omid-iran-bermuda:1.0.2 .
 ./scripts/docker-smoke.sh
 ```
 

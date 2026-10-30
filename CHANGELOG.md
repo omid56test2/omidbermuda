@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.2 — 2026-10-30
+
+- Fixed Windows Xray bootstrapper parsing of the official `SHA2-256=` digest label.
+- Added a shared PowerShell digest parser with SHA2-256, SHA-256 and SHA256 format support.
+- Added Windows CI fixtures for digest parsing, UTF-8 BOM handling and rejection of missing SHA-256 values.
+
 ## 1.0.1 — 2026-10-30
 
 - Prepared a GitHub-ready repository and tagged release workflow.

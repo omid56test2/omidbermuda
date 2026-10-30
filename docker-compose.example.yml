@@ -1,7 +1,7 @@
 services:
   omid-iran-bermuda:
     build: .
-    image: omid-iran-bermuda:1.0.1
+    image: omid-iran-bermuda:1.0.2
     container_name: omid-iran-bermuda
     init: true
     restart: unless-stopped

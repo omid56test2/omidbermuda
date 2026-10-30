@@ -1,4 +1,4 @@
-# OMID-IRAN BERMUDA 1.0.1
+# OMID-IRAN BERMUDA 1.0.2
 
 Self-hosted Go control plane for a fixed Bermuda-style Xray runtime. The application manages users, groups, per-user subscriptions, traffic accounting, Gateway policies, backups and Xray lifecycle. The previous Python OMID-IRAN source is intentionally not included in this release. Keep any old deployment snapshot in a separate private archive; it is not part of this runtime.
 
@@ -85,7 +85,7 @@ The Dockerfile builds the Go application and copies the official Xray executable
 
 ## Windows local mode (without Docker)
 
-For a ready-to-run Windows x64 package, download `OMID-IRAN-BERMUDA-v1.0.1-Windows-Local.zip` from the GitHub Releases page, extract it, and run `start-local.bat`. The first run downloads the official Xray Windows x64 archive and verifies its SHA-256 digest before installation. The local server binds only to `127.0.0.1:8000`; its admin token is generated locally and saved in `data-preview/admin-token.txt`. See [README.windows.fa.md](README.windows.fa.md) for Persian instructions.
+For a ready-to-run Windows x64 package, download `OMID-IRAN-BERMUDA-v1.0.2-Windows-Local.zip` from the GitHub Releases page, extract it, and run `start-local.bat`. The first run downloads the official Xray Windows x64 archive and verifies its SHA-256 digest before installation. The local server binds only to `127.0.0.1:8000`; its admin token is generated locally and saved in `data-preview/admin-token.txt`. See [README.windows.fa.md](README.windows.fa.md) for Persian instructions.
 
 The Windows binary is a release asset and is intentionally not tracked in Git.
 
@@ -162,11 +162,11 @@ Run a local HTTP smoke test (builds and starts a temporary app, creates a test u
 Run the real Docker + Xray integration test after building the image:
 
 ```bash
-docker build -t omid-iran-bermuda:1.0.1 .
+docker build -t omid-iran-bermuda:1.0.2 .
 ./scripts/docker-smoke.sh
 ```
 
-The GitHub Actions workflow runs Go, HTTP and Docker/Xray integration checks. A separate tag-triggered workflow builds Linux and Windows release assets and publishes a GitHub Release. The tag workflow runs only after you push a version tag such as `v1.0.1`. The local HTTP smoke test does not establish that a remote hosting provider permits this workload.
+The GitHub Actions workflow runs Go, HTTP and Docker/Xray integration checks. A separate tag-triggered workflow builds Linux and Windows release assets and publishes a GitHub Release. The tag workflow runs only after you push a version tag such as `v1.0.2`. The local HTTP smoke test does not establish that a remote hosting provider permits this workload.
 
 ## Upgrade note
 

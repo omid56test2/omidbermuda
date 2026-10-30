@@ -6,8 +6,8 @@
 4. Create and push the release tag:
 
 ```bash
-git tag -a v1.0.1 -m "OMID-IRAN BERMUDA 1.0.1"
-git push origin v1.0.1
+git tag -a v1.0.2 -m "OMID-IRAN BERMUDA 1.0.2"
+git push origin v1.0.2
 ```
 
 5. The `Release` GitHub Actions workflow builds Linux AMD64 and Windows AMD64 binaries, creates a Windows local-run bundle, generates SHA-256 checksums, and publishes a GitHub Release.

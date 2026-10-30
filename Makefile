@@ -1,17 +1,17 @@
 .PHONY: verify smoke build build-windows docker-build docker-smoke compose-up compose-down
 
 verify:
-	bash ./scripts/verify.sh
+	./scripts/verify.sh
 
 smoke:
-	bash ./scripts/smoke.sh
+	./scripts/smoke.sh
 
 build:
 	mkdir -p dist
 	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -trimpath -ldflags='-s -w' -o dist/omid-iran-bermuda-linux-amd64 ./cmd/server
 
 docker-smoke:
-	bash ./scripts/docker-smoke.sh
+	./scripts/docker-smoke.sh
 
 docker-build:
 	docker build -t omid-iran-bermuda:1.0.1 .

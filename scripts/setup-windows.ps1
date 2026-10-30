@@ -1,4 +1,6 @@
 $ErrorActionPreference = 'Stop'
+. (Join-Path $PSScriptRoot 'xray-digest.ps1')
+
 $Version = '26.10.21'
 $Asset = 'Xray-windows-64.zip'
 $BaseUrl = "https://github.com/XTLS/Xray-core/releases/download/v$Version"
@@ -15,15 +17,11 @@ try {
     Invoke-WebRequest -Uri "$BaseUrl/$Asset" -OutFile $ZipPath -UseBasicParsing
     Invoke-WebRequest -Uri "$BaseUrl/$Asset.dgst" -OutFile $DigestPath -UseBasicParsing
 
-    $DigestText = Get-Content $DigestPath -Raw
-    $Match = [regex]::Match($DigestText, '(?im)\bSHA-?256\b(?:\s*\([^)]*\))?\s*[:=]\s*([a-f0-9]{64})')
-    if (-not $Match.Success) {
-        throw 'Could not read SHA-256 from the official Xray .dgst file. The archive will not be installed.'
-    }
-    $Expected = $Match.Groups[1].Value.ToLowerInvariant()
+    $DigestText = [System.IO.File]::ReadAllText($DigestPath)
+    $Expected = Get-XraySha256FromDigestText -DigestText $DigestText
     $Actual = (Get-FileHash -Path $ZipPath -Algorithm SHA256).Hash.ToLowerInvariant()
     if ($Actual -ne $Expected) {
-        throw "Xray archive SHA-256 mismatch. Expected $Expected but received $Actual."
+        throw "Xray archive SHA-256 mismatch. Expected $Expected but received $Actual. The archive will not be installed."
     }
 
     $ExtractDir = Join-Path $Temp 'extracted'

@@ -1,4 +1,4 @@
-# Verification Report — OMID-IRAN BERMUDA 1.0.1
+# Verification Report — OMID-IRAN BERMUDA 1.0.2
 
 Verification date: 2026-10-30
 

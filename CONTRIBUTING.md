@@ -13,7 +13,7 @@
 For Docker/Xray integration, build the image and run:
 
 ```bash
-docker build -t omid-iran-bermuda:1.0.1 .
+docker build -t omid-iran-bermuda:1.0.2 .
 ./scripts/docker-smoke.sh
 ```
 
