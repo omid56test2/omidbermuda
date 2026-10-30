@@ -1,9 +1,35 @@
-name: Zip extract
-  # You may pin to the exact commit or the version.
-  # uses: hoatruongdev09/extract-zip-github-action@dd1eb7883f2792b2baeb525abd0471439e1c6a4e
-  uses: hoatruongdev09/extract-zip-github-action@v1.2
-  with:
-    # zip file path
-    input-path: 
-    # extract folder path
-    output-path: 
+# Example workflow showing how to consume this action in another repository.
+# Copy this file into `.github/workflows/` of your own repo and adjust as needed.
+name: Unzip Archives
+
+on:
+  # Run whenever a .zip file changes on a branch...
+  push:
+    paths:
+      - "**/*.zip"
+  # ...or trigger it manually.
+  workflow_dispatch:
+
+permissions:
+  contents: write # required so the action can commit extracted files back
+
+jobs:
+  unzip:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Unzip archives and commit the results
+        uses: postleo/unzipp@v1
+        with:
+          # Search the whole repository for .zip files.
+          path: "."
+          pattern: "**/*.zip"
+          # Extract each archive next to itself into a folder of the same name.
+          destination: "alongside"
+          # Remove the .zip once extracted so it isn't tracked anymore.
+          delete-zip: "true"
+          # Commit the extracted files back to the branch that triggered the run.
+          commit: "true"
+          commit-message: "chore: unzip archives [skip ci]"
